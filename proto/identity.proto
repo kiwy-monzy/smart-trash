@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package smarttrash.identity;
+
+// Users and roles. The gateway calls this to authenticate/authorize requests
+// before they reach business services.
+service IdentityService {
+    rpc GetUser (GetUserRequest) returns (User);
+
+    rpc Authorize (AuthorizeRequest) returns (AuthorizeResponse);
+
+    // Council only: everyone who can receive a "truck nearby" alert.
+    rpc ListUsers (ListUsersRequest) returns (ListUsersResponse);
+}
+
+// The four user categories from the project report (section 7.2):
+// households; businesses/markets/institutions; drivers/crews;
+// contractors and councils. Everything else (RESIDENT, DISPATCHER, ...)
+// was dropped so the code matches the report exactly.
+enum Role {
+    ROLE_UNSPECIFIED = 0;
+    // Households: easy request, known pickup time, reminders, live truck
+    // view, and a way to complain.
+    ROLE_HOUSEHOLD = 1;
+    // Businesses, markets and institutions: recurring pickups, larger
+    // volumes, collection records to prove legal compliance.
+    ROLE_BUSINESS = 2;
+    // Drivers/crews: clear daily route on a basic phone, one-tap status
+    // updates, works even with poor signal.
+    ROLE_DRIVER = 3;
+    // Contractors and councils: dashboard showing coverage, missed stops,
+    // volumes by area, and problem hotspots.
+    ROLE_COUNCIL = 4;
+}
+
+message User {
+    string user_id = 1;
+    string display_name = 2;
+    string email = 3;
+    Role role = 4;
+    // Administrative ward / zone, e.g. "Kinondoni".
+    string ward = 5;
+    int64 created_at_unix = 6;
+    // Home position of the user, used for "truck nearby" alerts.
+    double latitude = 7;
+    double longitude = 8;
+    string h3_cell = 9;
+}
+
+message GetUserRequest {
+    string user_id = 1;
+}
+
+message AuthorizeRequest {
+    string user_id = 1;
+    // Dot-free action name, e.g. "pickup.create", "route.assign".
+    string action = 2;
+}
+
+message AuthorizeResponse {
+    bool allowed = 1;
+    string reason = 2;
+}
+
+message ListUsersRequest {
+    int32 page_size = 1;
+}
+
+message ListUsersResponse {
+    repeated User users = 1;
+}

@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package smarttrash.auth;
+
+import "identity.proto";
+
+// Sign-in for clients that speak gRPC directly (the Tauri app).
+// This service is the only one served without a bearer token.
+service AuthService {
+    rpc Login (LoginRequest) returns (LoginResponse);
+
+    rpc Register (RegisterRequest) returns (LoginResponse);
+}
+
+message LoginRequest {
+    string user_id = 1;
+}
+
+message LoginResponse {
+    string token = 1;
+    string user_id = 2;
+    smarttrash.identity.Role role = 3;
+    int64 expires_at_unix = 4;
+}
+
+message RegisterRequest {
+    string display_name = 1;
+    smarttrash.identity.Role role = 2;
+    // Ward the user lives in.
+    string ward = 3;
+    double latitude = 4;
+    double longitude = 5;
+}

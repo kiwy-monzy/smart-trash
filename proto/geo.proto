@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package smarttrash.geo;
+
+// Tanzania regions, and the wards we actually have polygons for (Dar es Salaam).
+service GeoService {
+    rpc ListRegions (ListRegionsRequest) returns (ListRegionsResponse);
+
+    rpc ListWards (ListWardsRequest) returns (ListWardsResponse);
+}
+
+message Region {
+    string code = 1;
+    string name = 2;
+    double center_latitude = 3;
+    double center_longitude = 4;
+    // Only Dar es Salaam has ward data today.
+    bool has_wards = 5;
+}
+
+message Ward {
+    string code = 1;
+    string name = 2;
+    string region_code = 3;
+    double center_latitude = 4;
+    double center_longitude = 5;
+    string h3_cell = 6;
+}
+
+message ListRegionsRequest {}
+
+message ListRegionsResponse {
+    repeated Region regions = 1;
+}
+
+message ListWardsRequest {
+    string region_code = 1;
+}
+
+message ListWardsResponse {
+    repeated Ward wards = 1;
+}

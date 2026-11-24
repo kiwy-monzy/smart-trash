@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package smarttrash.compliance;
+
+// Council reporting: collection statistics and regulatory exports.
+service ComplianceService {
+    rpc GetCollectionStats (GetCollectionStatsRequest) returns (CollectionStats);
+
+    rpc GenerateMonthlyReport (GenerateMonthlyReportRequest) returns (ComplianceReport);
+}
+
+message GetCollectionStatsRequest {
+    // e.g. "Kinondoni"; empty = all zones.
+    string zone = 1;
+    // yyyy-mm; empty = current month.
+    string month = 2;
+}
+
+message CollectionStats {
+    string zone = 1;
+    string month = 2;
+    int32 total_pickups = 3;
+    int32 completed_pickups = 4;
+    int32 missed_pickups = 5;
+    double total_volume_cubic_metres = 6;
+    double diversion_rate_percent = 7;
+    int32 active_vehicles = 8;
+}
+
+message GenerateMonthlyReportRequest {
+    string zone = 1;
+    string month = 2;
+}
+
+message ComplianceReport {
+    string report_id = 1;
+    string zone = 2;
+    string month = 3;
+    CollectionStats stats = 4;
+    // Object-storage URL of the generated PDF/CSV export.
+    string document_url = 5;
+    int64 generated_at_unix = 6;
+}

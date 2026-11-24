@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package smarttrash.tracking;
+
+// Live GPS: drivers report positions, dashboards subscribe to them.
+// Streaming here; fan-out to browsers happens over WebSocket at the gateway.
+service TrackingService {
+    rpc ReportLocation (ReportLocationRequest) returns (LocationAck);
+
+    rpc GetVehicleLocation (GetVehicleLocationRequest) returns (VehicleLocation);
+
+    rpc StreamVehicleLocations (StreamVehicleLocationsRequest)
+        returns (stream VehicleLocation);
+}
+
+message ReportLocationRequest {
+    string vehicle_id = 1;
+    string driver_id = 2;
+    double latitude = 3;
+    double longitude = 4;
+    // Metres per second; 0 when stationary.
+    double speed_mps = 5;
+    // Heading in degrees, 0..360.
+    double heading_degrees = 6;
+    int64 recorded_at_unix = 7;
+}
+
+message LocationAck {
+    string vehicle_id = 1;
+    int64 accepted_at_unix = 2;
+}
+
+message GetVehicleLocationRequest {
+    string vehicle_id = 1;
+}
+
+message VehicleLocation {
+    string vehicle_id = 1;
+    double latitude = 2;
+    double longitude = 3;
+    double speed_mps = 4;
+    double heading_degrees = 5;
+    int64 recorded_at_unix = 6;
+}
+
+message StreamVehicleLocationsRequest {
+    // Empty means every vehicle being tracked.
+    repeated string vehicle_ids = 1;
+}

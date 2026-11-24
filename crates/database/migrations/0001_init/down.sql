@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS pickups;
+DROP SEQUENCE IF EXISTS pickup_id_seq;

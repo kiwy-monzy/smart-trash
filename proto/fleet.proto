@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package smarttrash.fleet;
+
+// Trucks and drivers.
+service FleetService {
+    rpc GetVehicle (GetVehicleRequest) returns (Vehicle);
+
+    rpc ListVehicles (ListVehiclesRequest) returns (ListVehiclesResponse);
+
+    rpc AssignDriver (AssignDriverRequest) returns (VehicleAssignment);
+
+    // A driver turns its vehicle on/off for the day.
+    rpc SetVehicleState (SetVehicleStateRequest) returns (Vehicle);
+}
+
+enum VehicleState {
+    VEHICLE_STATE_UNSPECIFIED = 0;
+    VEHICLE_STATE_IDLE = 1;
+    VEHICLE_STATE_AVAILABLE = 2;
+    VEHICLE_STATE_ON_ROUTE = 3;
+    VEHICLE_STATE_MAINTENANCE = 4;
+    VEHICLE_STATE_OUT_OF_SERVICE = 5;
+}
+
+enum VehicleType {
+    VEHICLE_TYPE_UNSPECIFIED = 0;
+    VEHICLE_TYPE_COMPACT_TRUCK = 1;
+    VEHICLE_TYPE_STANDARD_TRUCK = 2;
+    VEHICLE_TYPE_ROLLOFF_TRUCK = 3;
+    VEHICLE_TYPE_COMPACTOR_TRUCK = 4;
+}
+
+message Vehicle {
+    string vehicle_id = 1;
+    string registration_plate = 2;
+    VehicleType vehicle_type = 3;
+    VehicleState state = 4;
+    double capacity_cubic_metres = 5;
+    string driver_id = 6;
+    double latitude = 7;
+    double longitude = 8;
+    // Driver switched the vehicle on for service.
+    bool activated = 9;
+    // H3 cell of the last known position (resolution 9).
+    string h3_cell = 10;
+}
+
+message ListVehiclesRequest {
+    VehicleState state_filter = 1;
+    int32 page_size = 2;
+}
+
+message ListVehiclesResponse {
+    repeated Vehicle vehicles = 1;
+}
+
+message GetVehicleRequest {
+    string vehicle_id = 1;
+}
+
+message AssignDriverRequest {
+    string vehicle_id = 1;
+    string driver_id = 2;
+    string route_id = 3;
+}
+
+message VehicleAssignment {
+    string vehicle_id = 1;
+    string driver_id = 2;
+    string route_id = 3;
+}
+
+message SetVehicleStateRequest {
+    string vehicle_id = 1;
+    // AVAILABLE turns it on, OUT_OF_SERVICE turns it off.
+    VehicleState state = 2;
+}

@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package smarttrash.scheduling;
+
+// Groups pickup requests into collection windows (by zone and time slot).
+service SchedulingService {
+    rpc CreateWindow (CreateWindowRequest) returns (CollectionWindow);
+
+    rpc SchedulePickup (SchedulePickupRequest) returns (CollectionWindow);
+
+    rpc GetWindow (GetWindowRequest) returns (CollectionWindow);
+
+    rpc ListWindows (ListWindowsRequest) returns (ListWindowsResponse);
+}
+
+enum WindowStatus {
+    WINDOW_STATUS_UNSPECIFIED = 0;
+    WINDOW_STATUS_OPEN = 1;
+    WINDOW_STATUS_LOCKED = 2;
+    WINDOW_STATUS_IN_PROGRESS = 3;
+    WINDOW_STATUS_CLOSED = 4;
+}
+
+message CollectionWindow {
+    string window_id = 1;
+    string zone = 2;
+    int64 start_unix = 3;
+    int64 end_unix = 4;
+    WindowStatus status = 5;
+    repeated string pickup_ids = 6;
+    int32 capacity_limit = 7;
+}
+
+message CreateWindowRequest {
+    string zone = 1;
+    int64 start_unix = 2;
+    int64 end_unix = 3;
+    int32 capacity_limit = 4;
+}
+
+message SchedulePickupRequest {
+    string window_id = 1;
+    string pickup_id = 2;
+}
+
+message GetWindowRequest {
+    string window_id = 1;
+}
+
+message ListWindowsRequest {
+}
+
+message ListWindowsResponse {
+    repeated CollectionWindow windows = 1;
+}

@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+package smarttrash.pickup;
+
+// Contract for the collection-request workflow.
+// Keep this independent of any database schema: it describes what the
+// service can do, not how PostgreSQL stores it.
+service PickupService {
+    rpc CreatePickup (CreatePickupRequest)
+        returns (Pickup);
+
+    rpc GetPickup (GetPickupRequest)
+        returns (Pickup);
+
+    rpc ListPickups (ListPickupsRequest)
+        returns (ListPickupsResponse);
+
+    rpc AssignPickup (AssignPickupRequest)
+        returns (Pickup);
+
+    rpc CompletePickup (CompletePickupRequest)
+        returns (Pickup);
+}
+
+enum PickupStatus {
+    PICKUP_STATUS_UNSPECIFIED = 0;
+    PICKUP_STATUS_PENDING = 1;
+    PICKUP_STATUS_SCHEDULED = 2;
+    PICKUP_STATUS_ASSIGNED = 3;
+    PICKUP_STATUS_IN_PROGRESS = 4;
+    PICKUP_STATUS_COMPLETED = 5;
+    PICKUP_STATUS_CANCELLED = 6;
+}
+
+enum WasteType {
+    WASTE_TYPE_UNSPECIFIED = 0;
+    WASTE_TYPE_ORGANIC = 1;
+    WASTE_TYPE_RECYCLABLE = 2;
+    WASTE_TYPE_GENERAL = 3;
+    WASTE_TYPE_HAZARDOUS = 4;
+    WASTE_TYPE_CONSTRUCTION = 5;
+}
+
+message Pickup {
+    string pickup_id = 1;
+    string customer_id = 2;
+    WasteType waste_type = 3;
+    double latitude = 4;
+    double longitude = 5;
+    double estimated_volume = 6;
+    double collected_volume = 7;
+    string evidence_url = 8;
+    PickupStatus status = 9;
+    string vehicle_id = 10;
+    string driver_id = 11;
+    // Unix seconds; avoids depending on well-known proto types.
+    int64 created_at_unix = 12;
+    int64 updated_at_unix = 13;
+    // H3 cell (resolution 9) of the pickup location.
+    string h3_cell = 14;
+    // Ward the pickup belongs to.
+    string ward = 15;
+}
+
+message CreatePickupRequest {
+    string customer_id = 1;
+    WasteType waste_type = 2;
+    double latitude = 3;
+    double longitude = 4;
+    double estimated_volume = 5;
+}
+
+message GetPickupRequest {
+    string pickup_id = 1;
+}
+
+message ListPickupsRequest {
+    // Optional server-side page size; 0 means server default.
+    int32 page_size = 1;
+    PickupStatus status_filter = 2;
+}
+
+message ListPickupsResponse {
+    repeated Pickup pickups = 1;
+}
+
+message AssignPickupRequest {
+    string pickup_id = 1;
+    string vehicle_id = 2;
+    string driver_id = 3;
+}
+
+message CompletePickupRequest {
+    string pickup_id = 1;
+    double collected_volume = 2;
+    string evidence_url = 3;
+}

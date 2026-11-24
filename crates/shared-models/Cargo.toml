@@ -1,0 +1,13 @@
+[package]
+name = "shared-models"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Serde DTOs shared between the gateway and client applications"
+
+[dependencies]
+serde.workspace = true
+smarttrash-proto.workspace = true
+
+[dev-dependencies]
+serde_json.workspace = true

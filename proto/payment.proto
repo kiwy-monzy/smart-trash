@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package smarttrash.payment;
+
+// Invoices and payments for household and business collections.
+service PaymentService {
+    rpc CreateInvoice (CreateInvoiceRequest) returns (Invoice);
+
+    rpc GetInvoice (GetInvoiceRequest) returns (Invoice);
+
+    rpc RecordPayment (RecordPaymentRequest) returns (Invoice);
+}
+
+enum InvoiceStatus {
+    INVOICE_STATUS_UNSPECIFIED = 0;
+    INVOICE_STATUS_DRAFT = 1;
+    INVOICE_STATUS_ISSUED = 2;
+    INVOICE_STATUS_PAID = 3;
+    INVOICE_STATUS_VOID = 4;
+    INVOICE_STATUS_OVERDUE = 5;
+}
+
+message Invoice {
+    string invoice_id = 1;
+    string customer_id = 2;
+    string pickup_id = 3;
+    // Amounts in Tanzanian shillings, stored as integer cents to avoid floats.
+    int64 amount_cents = 4;
+    string currency = 5;
+    InvoiceStatus status = 6;
+    int64 issued_at_unix = 7;
+    int64 paid_at_unix = 8;
+}
+
+message CreateInvoiceRequest {
+    string customer_id = 1;
+    string pickup_id = 2;
+    int64 amount_cents = 3;
+    string currency = 4;
+}
+
+message GetInvoiceRequest {
+    string invoice_id = 1;
+}
+
+message RecordPaymentRequest {
+    string invoice_id = 1;
+    // External reference from the payment provider.
+    string payment_reference = 2;
+    int64 paid_amount_cents = 3;
+}

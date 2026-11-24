@@ -1,0 +1,11 @@
+[package]
+name = "database"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "PostgreSQL connection, migrations and Diesel models"
+
+[dependencies]
+diesel.workspace = true
+diesel_migrations.workspace = true
+tracing.workspace = true

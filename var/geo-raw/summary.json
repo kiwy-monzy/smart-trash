@@ -1,0 +1,448 @@
+{
+ "attribution": "\u00a9 OpenStreetMap contributors (ODbL); extract Geofabrik",
+ "bbox": {
+  "east": 39.65,
+  "north": -6.6,
+  "south": -7.15,
+  "west": 38.98
+ },
+ "counts": {
+  "districts_found": 0,
+  "missing_member_ways": 2312,
+  "region_found": true,
+  "region_osm_id": 7202037,
+  "relations_collected": 308,
+  "roads_major_features": 1973,
+  "roads_minor_features": 82941,
+  "unclosed_rings_dropped": 99,
+  "ward_to_district_by_fallback_map": 70,
+  "ward_to_district_by_pip": 1,
+  "wards_dropped_outside_region": 112,
+  "wards_found": 71,
+  "wards_missing_from_osm_but_in_wardmap": 4,
+  "waste_features": 81
+ },
+ "districts": [],
+ "generated_at_utc": "unix-seconds:1795440263",
+ "generated_by": "osm-fetch-dsm (Rust, osmpbf crate)",
+ "license": "ODbL - (c) OpenStreetMap contributors",
+ "notes": [
+  "Ward polygons come from OSM relations tagged boundary=administrative admin_level=9 (or place=ward).",
+  "OSM has NO municipal-district boundary relations for Dar es Salaam (admin_level 6/7): district features are therefore DERIVED as the union of the OSM ward polygons of each municipality; wards missing from OSM leave gaps that are listed, not filled by guessing.",
+  "Ward->district assignment: OSM district polygons when they exist, otherwise wardmap.json (Nominatim lookup of each OSM ward relation's parent municipality, plus 3 wards documented in the report pack: Bonyokwa/Ilala, Bunju/Kinondoni, Saranga/Ubungo).",
+  "Roads are split into roads_major.geojson (motorway..tertiary + links) and roads_minor.geojson (residential, unclassified, living_street, service, track, pedestrian), clipped to the bbox.",
+  "Zone of a dumpsite = containing OSM ward polygon (ward->district via wardmap); where no OSM ward polygon covers the site, zone fields are left empty rather than guessed.",
+  "Ward completeness (added 2026-11-23): NBS 2022 census lists 102 wards for Dar es Salaam (DCC 36, Kinondoni 20, Temeke 23, Ubungo 14, Kigamboni 9). OSM has admin_level=9 polygons for only 69 of them (+1 unnamed relation inferred as Kinyerezi). 30 more wards are anchored at real OSM point objects (mostly ward offices found via Nominatim); 2 wards (Majohe, Mianzini) have no usable OSM object and are listed as gaps in wards_full.geojson. OSM polygon \"Guruka Kwalala\" is flagged as not-in-NBS-list.",
+  "Ward completeness (added 2026-11-23): NBS 2022 census lists 102 wards for Dar es Salaam (DCC 36, Kinondoni 20, Temeke 23, Ubungo 14, Kigamboni 9). OSM has admin_level=9 polygons for only 69 of them (+1 unnamed relation inferred as Kinyerezi). 30 more wards are anchored at real OSM point objects (mostly ward offices found via Nominatim); 2 wards (Majohe, Mianzini) have no usable OSM object and are listed as gaps in wards_full.geojson. OSM polygon \"Guruka Kwalala\" is flagged as not-in-NBS-list."
+ ],
+ "pbf_file": "/home/z/my-project/data/tanzania-latest.osm.pbf",
+ "pbf_source_date": "2026-11-22 (Geofabrik tanzania-261122.osm.pbf)",
+ "wards": [
+  {
+   "district": "Ilala",
+   "name": "Buguruni",
+   "osm_id": 5477348
+  },
+  {
+   "district": "Temeke",
+   "name": "Temeke",
+   "osm_id": 5661995
+  },
+  {
+   "district": "Ubungo",
+   "name": "Goba",
+   "osm_id": 5995041
+  },
+  {
+   "district": "Kigamboni",
+   "name": "Kigamboni",
+   "osm_id": 6054330
+  },
+  {
+   "district": "Temeke",
+   "name": "Kijichi",
+   "osm_id": 6056668
+  },
+  {
+   "district": "Ilala",
+   "name": "Upanga Mashariki",
+   "osm_id": 6663362
+  },
+  {
+   "district": "Ilala",
+   "name": "Tabata",
+   "osm_id": 5605405
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Tandale",
+   "osm_id": 5468233
+  },
+  {
+   "district": "Ilala",
+   "name": "Gongolamboto",
+   "osm_id": 9566841
+  },
+  {
+   "district": "Temeke",
+   "name": "Kurasini",
+   "osm_id": 6000987
+  },
+  {
+   "district": "Temeke",
+   "name": "Sandali",
+   "osm_id": 6054076
+  },
+  {
+   "district": "Ubungo",
+   "name": "Mabibo",
+   "osm_id": 5477216
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Mwananyamala",
+   "osm_id": 5476810
+  },
+  {
+   "district": "Kigamboni",
+   "name": "Mji Mwema",
+   "osm_id": 6054522
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Hananasif",
+   "osm_id": 5476892
+  },
+  {
+   "district": "Ilala",
+   "name": "Kimanga",
+   "osm_id": 9576986
+  },
+  {
+   "district": "Temeke",
+   "name": "Makangarawe",
+   "osm_id": 6583777
+  },
+  {
+   "district": "Ubungo",
+   "name": "Manzese",
+   "osm_id": 5554306
+  },
+  {
+   "district": "Temeke",
+   "name": "Mbagala Kuu",
+   "osm_id": 6583755
+  },
+  {
+   "district": "Ubungo",
+   "name": "Makuburi",
+   "osm_id": 5990754
+  },
+  {
+   "district": "Ilala",
+   "name": "Liwiti",
+   "osm_id": 9491925
+  },
+  {
+   "district": "Kigamboni",
+   "name": "Tungi",
+   "osm_id": 6054425
+  },
+  {
+   "district": "Kigamboni",
+   "name": "Kisarawe II",
+   "osm_id": 6054631
+  },
+  {
+   "district": "Temeke",
+   "name": "Toangoma",
+   "osm_id": 6054634
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Makongo",
+   "osm_id": 5997902
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Kigogo",
+   "osm_id": 5525866
+  },
+  {
+   "district": "Ilala",
+   "name": "Kariakoo",
+   "osm_id": 5559150
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Mbezi Juu",
+   "osm_id": 5995057
+  },
+  {
+   "district": "Ilala",
+   "name": "Jangwani",
+   "osm_id": 6852464
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Msasani",
+   "osm_id": 6024568
+  },
+  {
+   "district": "Ilala",
+   "name": "Kisutu",
+   "osm_id": 6665291
+  },
+  {
+   "district": "Ubungo",
+   "name": "Sinza",
+   "osm_id": 6505583
+  },
+  {
+   "district": "Kigamboni",
+   "name": "Kimbiji",
+   "osm_id": 6054630
+  },
+  {
+   "district": "Kigamboni",
+   "name": "Pemba Mnazi",
+   "osm_id": 6054632
+  },
+  {
+   "district": "Kigamboni",
+   "name": "Vijibweni",
+   "osm_id": 6054451
+  },
+  {
+   "district": "Ilala",
+   "name": "Upanga Magharibi",
+   "osm_id": 6526889
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Mzimuni",
+   "osm_id": 5499903
+  },
+  {
+   "district": "Ilala",
+   "name": "Mnyamani",
+   "osm_id": 9491179
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Mikocheni",
+   "osm_id": 7578556
+  },
+  {
+   "district": "Temeke",
+   "name": "Azimio",
+   "osm_id": 6037141
+  },
+  {
+   "district": "Ilala",
+   "name": "Kivukoni",
+   "osm_id": 5559900
+  },
+  {
+   "district": "Ubungo",
+   "name": "Makurumla",
+   "osm_id": 6227443
+  },
+  {
+   "district": "Ubungo",
+   "name": "Mbezi",
+   "osm_id": 5995024
+  },
+  {
+   "district": "Ilala",
+   "name": "Pugu Station",
+   "osm_id": 9539586
+  },
+  {
+   "district": "",
+   "name": "",
+   "osm_id": 9576980
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Kijitonyama",
+   "osm_id": 6503869
+  },
+  {
+   "district": "Ilala",
+   "name": "Vingunguti",
+   "osm_id": 5507097
+  },
+  {
+   "district": "Ilala",
+   "name": "Pugu",
+   "osm_id": 9539916
+  },
+  {
+   "district": "Ilala",
+   "name": "Mchafukoge",
+   "osm_id": 5559115
+  },
+  {
+   "district": "Temeke",
+   "name": "Chang'ombe",
+   "osm_id": 6056649
+  },
+  {
+   "district": "Ilala",
+   "name": "Segerea",
+   "osm_id": 9576984
+  },
+  {
+   "district": "Ilala",
+   "name": "Gerezani",
+   "osm_id": 6663357
+  },
+  {
+   "district": "Ilala",
+   "name": "Kipawa",
+   "osm_id": 5997014
+  },
+  {
+   "district": "Temeke",
+   "name": "Keko",
+   "osm_id": 6525256
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Ndugumbi",
+   "osm_id": 5473567
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Kinondoni",
+   "osm_id": 5476809
+  },
+  {
+   "district": "Temeke",
+   "name": "Buza",
+   "osm_id": 5496101
+  },
+  {
+   "district": "Ilala",
+   "name": "Kiwalani",
+   "osm_id": 5997065
+  },
+  {
+   "district": "Ubungo",
+   "name": "Ubungo",
+   "osm_id": 5601189
+  },
+  {
+   "district": "Kigamboni",
+   "name": "Somangila",
+   "osm_id": 6054633
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Kawe",
+   "osm_id": 5997194
+  },
+  {
+   "district": "Temeke",
+   "name": "Tandika",
+   "osm_id": 6037205
+  },
+  {
+   "district": "Temeke",
+   "name": "Miburani",
+   "osm_id": 6024788
+  },
+  {
+   "district": "Ilala",
+   "name": "Guruka Kwalala",
+   "osm_id": 9566840
+  },
+  {
+   "district": "Ilala",
+   "name": "Mchikichini",
+   "osm_id": 5473740
+  },
+  {
+   "district": "Temeke",
+   "name": "Mbagala",
+   "osm_id": 6056799
+  },
+  {
+   "district": "Temeke",
+   "name": "Mtoni",
+   "osm_id": 6024806
+  },
+  {
+   "district": "Ubungo",
+   "name": "Kimara",
+   "osm_id": 5990992
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Magomeni",
+   "osm_id": 5466597
+  },
+  {
+   "district": "Ilala",
+   "name": "Kisukuru",
+   "osm_id": 9491926
+  },
+  {
+   "district": "Kinondoni",
+   "name": "Makumbusho",
+   "osm_id": 6171002
+  }
+ ],
+ "wards_in_wardmap_not_found_in_osm": [
+  "Saranga",
+  "Bonyokwa",
+  "Bunju",
+  "Ilala"
+ ],
+ "wards_full": {
+  "official_ward_total": 102,
+  "official_breakdown": {
+   "Ilala": 36,
+   "Kinondoni": 20,
+   "Temeke": 23,
+   "Kigamboni": 9,
+   "Ubungo": 14
+  },
+  "polygons_osm_admin_level9": 70,
+  "point_anchors_osm": 30,
+  "gaps_no_osm_object": [
+   "Majohe",
+   "Mianzini"
+  ],
+  "osm_extra_flagged": "Guruka Kwalala (relation 9566840) - OSM polygon not in the NBS 2022 ward list",
+  "unnamed_relation_note": "OSM relation 9576980 is an unnamed ward boundary whose centre falls in Kinyerezi (reverse geocode) - used as probable Kinyerezi polygon with an inferred flag",
+  "sources": [
+   "PRIMARY: National Bureau of Statistics (NBS), 2022 Population and Housing Census, 'Administrative Units: Population Distribution Report, Tanzania, Volume 1a' - ward tables for Dar es Salaam City Council (Table 7.2), Kinondoni Municipal Council (Table 7.1), Temeke Municipal Council (Table 7.3), Kigamboni Municipal Council (Table 7.4), Ubungo Municipal Council (Table 7.5). PDF downloaded from https://www.nbs.go.tz/nbs/takwimu/Census2022/Administrative_units_Population_Distribution_Report_Tanzania_volume1a.pdf (HTTP 200, 15,016,674 bytes) and ward names extracted programmatically from the parsed text.",
+   "CROSS-CHECK: English Wikipedia ward lists for the five district pages (Ilala District, Kinondoni District, Temeke_District, Ubungo District, Kigamboni District) - raw wikitext fetched 2026-11-23. Wikipedia's own counts: Ilala 36 listed, Kinondoni 20 listed, Ubungo 'fourteen (14)' stated, Kigamboni '9 wards' stated, Temeke '23 wards' stated but lists only 21 (gaps: Kibondemaji, Kilungule - both present in the NBS table)."
+  ],
+  "updated": "2026-11-23"
+ },
+ "wards_official": {
+  "file": "wards_official.geojson",
+  "features": 103,
+  "nbs_2022_wards": 102,
+  "boundary_geometry": {
+   "osm_polygon": 70,
+   "official_2018_codab_polygon_name_matched": 24,
+   "no_published_boundary_point_only": 8
+  },
+  "point_only_wards": [
+   "Bonyokwa",
+   "Buyuni",
+   "Kipunguni",
+   "Minazi Mirefu",
+   "Mzinga",
+   "Zingiziwa",
+   "Kibondemaji",
+   "Kilungule"
+  ],
+  "source_codab": "OCHA COD-AB tza_admbnda_adm3_20181019 (shapefile, data.humdata.org dataset 451bdd28-d06d-46ea-91c0-2e081f884395, downloaded 2026-11-23); wards as of the 2018 official layout; NBS 2022 wards of the same name - layout may differ after 2018 splits",
+  "districts_rebuilt": "districts.geojson = per-municipality unions of the merged ward polygon set; covers 98.32% of the OSM region polygon (was ~62% when only OSM ward polygons existed); remaining 1.7% = coastal fringe/islands not in the 2018 official ward set"
+ }
+}

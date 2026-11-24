@@ -1,0 +1,5 @@
+DROP INDEX IF EXISTS pickups_customer_idx;
+DROP INDEX IF EXISTS pickups_h3_idx;
+
+ALTER TABLE pickups DROP COLUMN IF EXISTS ward;
+ALTER TABLE pickups DROP COLUMN IF EXISTS h3_cell;

@@ -1,0 +1,23 @@
+[package]
+name = "api-gateway"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "HTTP gateway (Axum) for web/mobile clients, backed by RPC services"
+
+[[bin]]
+name = "api-gateway"
+path = "src/main.rs"
+
+[dependencies]
+smarttrash-proto.workspace = true
+shared-models.workspace = true
+rpc-common.workspace = true
+tonic.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+axum.workspace = true
+tower-http.workspace = true
+serde.workspace = true
+serde_json.workspace = true

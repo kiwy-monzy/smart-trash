@@ -1,0 +1,41 @@
+{
+  "title": "Official ward list, Dar es Salaam Region - 5 councils, 102 wards",
+  "compiled": "2026-11-23",
+  "sources": [
+    "PRIMARY: National Bureau of Statistics (NBS), 2022 Population and Housing Census, 'Administrative Units: Population Distribution Report, Tanzania, Volume 1a' - ward tables for Dar es Salaam City Council (Table 7.2), Kinondoni Municipal Council (Table 7.1), Temeke Municipal Council (Table 7.3), Kigamboni Municipal Council (Table 7.4), Ubungo Municipal Council (Table 7.5). PDF downloaded from https://www.nbs.go.tz/nbs/takwimu/Census2022/Administrative_units_Population_Distribution_Report_Tanzania_volume1a.pdf (HTTP 200, 15,016,674 bytes) and ward names extracted programmatically from the parsed text.",
+    "CROSS-CHECK: English Wikipedia ward lists for the five district pages (Ilala District, Kinondoni District, Temeke_District, Ubungo District, Kigamboni District) - raw wikitext fetched 2026-11-23. Wikipedia's own counts: Ilala 36 listed, Kinondoni 20 listed, Ubungo 'fourteen (14)' stated, Kigamboni '9 wards' stated, Temeke '23 wards' stated but lists only 21 (gaps: Kibondemaji, Kilungule - both present in the NBS table)."
+  ],
+  "note": "The user's commonly cited breakdown (Ilala 36, Kinondoni 20, Temeke 23, Ubungo 14, Kigamboni 9 = 102) matches the NBS 2022 census exactly. 'Ilala' in that breakdown is called 'DAR ES SALAAM CITY COUNCIL' in the NBS census tables (the 36 wards of the old Ilala district area). OSM additionally contains a polygon named 'Guruka Kwalala' (relation 9566840) which is NOT one of NBS 2022's 36 DCC wards - flagged as an OSM extra (likely a newer split from Kiwalani), and one unnamed OSM ward relation (9576980) whose center falls in Kinyerezi (Nominatim reverse geocode) - flagged as inferred Kinyerezi, not confirmed by a name tag.",
+  "districts": {
+    "Dar es Salaam City Council (Ilala area)": {
+      "osm_district_key": "Ilala",
+      "nbs_table": "Table 7.2",
+      "ward_count": 36,
+      "wards": ["Kariakoo", "Jangwani", "Gerezani", "Kisutu", "Mchafukoge", "Upanga Mashariki", "Upanga Magharibi", "Kivukoni", "Ilala", "Mchikichini", "Vingunguti", "Kipawa", "Buguruni", "Kiwalani", "Mnyamani", "Minazi Mirefu", "Tabata", "Kinyerezi", "Segerea", "Kimanga", "Liwiti", "Bonyokwa", "Kisukuru", "Ukonga", "Pugu", "Msongola", "Kitunda", "Chanika", "Kivule", "Gongolamboto", "Majohe", "Zingiziwa", "Buyuni", "Pugu Station", "Mzinga", "Kipunguni"]
+    },
+    "Kinondoni Municipal Council": {
+      "osm_district_key": "Kinondoni",
+      "nbs_table": "Table 7.1",
+      "ward_count": 20,
+      "wards": ["Kigogo", "Mzimuni", "Magomeni", "Ndugumbi", "Tandale", "Kijitonyama", "Kinondoni", "Hananasif", "Mwananyamala", "Makumbusho", "Makongo", "Mbezi Juu", "Wazo", "Mabwepande", "Bunju", "Mbweni", "Kunduchi", "Kawe", "Mikocheni", "Msasani"]
+    },
+    "Temeke Municipal Council": {
+      "osm_district_key": "Temeke",
+      "nbs_table": "Table 7.3",
+      "ward_count": 23,
+      "wards": ["Miburani", "Azimio", "Tandika", "Sandali", "Temeke", "Chang'ombe", "Keko", "Kurasini", "Mtoni", "Buza", "Makangarawe", "Yombo Vituka", "Kilakala", "Kijichi", "Mbagala Kuu", "Toangoma", "Mianzini", "Kibondemaji", "Chamazi", "Kilungule", "Charambe", "Mbagala", "Kiburugwa"]
+    },
+    "Kigamboni Municipal Council": {
+      "osm_district_key": "Kigamboni",
+      "nbs_table": "Table 7.4",
+      "ward_count": 9,
+      "wards": ["Kigamboni", "Tungi", "Mjimwema", "Kibada", "Vijibweni", "Kimbiji", "Pembamnazi", "Somangila", "Kisarawe II"]
+    },
+    "Ubungo Municipal Council": {
+      "osm_district_key": "Ubungo",
+      "nbs_table": "Table 7.5",
+      "ward_count": 14,
+      "wards": ["Ubungo", "Sinza", "Manzese", "Makurumla", "Mburahati", "Mabibo", "Makuburi", "Kimara", "Saranga", "Msigani", "Kwembe", "Kibamba", "Mbezi", "Goba"]
+    }
+  }
+}

@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package smarttrash.routing;
+
+// Route optimization over PostGIS-style coordinates, truck capacity and
+// road accessibility.
+service RoutingService {
+    rpc OptimizeRoute (OptimizeRouteRequest) returns (Route);
+
+    rpc GetRoute (GetRouteRequest) returns (Route);
+}
+
+enum RouteStatus {
+    ROUTE_STATUS_UNSPECIFIED = 0;
+    ROUTE_STATUS_DRAFT = 1;
+    ROUTE_STATUS_OPTIMIZED = 2;
+    ROUTE_STATUS_DISPATCHED = 3;
+    ROUTE_STATUS_COMPLETED = 4;
+}
+
+message Stop {
+    int32 sequence = 1;
+    string pickup_id = 2;
+    double latitude = 3;
+    double longitude = 4;
+    double estimated_volume = 5;
+}
+
+message Route {
+    string route_id = 1;
+    string vehicle_id = 2;
+    // yyyy-mm-dd service date, kept as string to avoid well-known types.
+    string service_date = 3;
+    RouteStatus status = 4;
+    repeated Stop stops = 5;
+    double total_distance_km = 6;
+    double total_duration_minutes = 7;
+}
+
+message OptimizeRouteRequest {
+    string vehicle_id = 1;
+    string service_date = 2;
+    repeated string pickup_ids = 3;
+    // Truck capacity in cubic metres; the optimizer must not overflow it.
+    double capacity_cubic_metres = 4;
+}
+
+message GetRouteRequest {
+    string route_id = 1;
+}

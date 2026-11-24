@@ -1,0 +1,8 @@
+# Configuration for the diesel CLI (`diesel print-schema`).
+# The CLI is optional: migrations run automatically at server start
+# (see crates/database/src/lib.rs).
+
+[print_schema]
+file = "crates/database/src/schema.rs"
+# Only print what the services actually use — keeps the file easy to read.
+filter = { only_tables = ["pickups"] }

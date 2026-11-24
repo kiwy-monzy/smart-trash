@@ -1,0 +1,35 @@
+{
+  "region": "Dar es Salaam",
+  "districts": [
+    "Ilala",
+    "Kinondoni",
+    "Temeke",
+    "Ubungo",
+    "Kigamboni"
+  ],
+  "ward_polygons": 94,
+  "ward_anchors": 8,
+  "ward_polygons_by_district": {
+    "Ilala": 31,
+    "Kigamboni": 9,
+    "Kinondoni": 20,
+    "Temeke": 21,
+    "Ubungo": 13
+  },
+  "ward_polygons_osm": 71,
+  "ward_polygons_codab": 23,
+  "waste_sites": 46,
+  "waste_site_polygons": 11,
+  "waste_site_points": 35,
+  "waste_sites_outside_region": 35,
+  "waste_sites_by_kind": {
+    "recycling": 12,
+    "waste_disposal": 29,
+    "landfill": 5
+  },
+  "road_features": 1973,
+  "minor_road_features": 76729,
+  "river_features": 747,
+  "rings": 106,
+  "attribution": "\u00c2\u00a9 OpenStreetMap contributors (ODbL); ward names NBS 2022"
+}

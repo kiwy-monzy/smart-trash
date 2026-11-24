@@ -1,0 +1,9 @@
+[package]
+name = "notifications"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Outbound notifications (resident/driver alerts, council digests)"
+
+[dependencies]
+tracing.workspace = true

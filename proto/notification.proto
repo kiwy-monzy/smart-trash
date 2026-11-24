@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package smarttrash.notification;
+
+// "Your truck is nearby" style alerts, created by the tracking service.
+service NotificationService {
+    rpc ListNotifications (ListNotificationsRequest) returns (ListNotificationsResponse);
+}
+
+message Notification {
+    string notification_id = 1;
+    string user_id = 2;
+    string title = 3;
+    string body = 4;
+    // H3 cell the alert belongs to.
+    string h3_cell = 5;
+    int64 created_at_unix = 6;
+}
+
+message ListNotificationsRequest {
+    int32 limit = 1;
+}
+
+message ListNotificationsResponse {
+    repeated Notification notifications = 1;
+}
